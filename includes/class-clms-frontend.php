@@ -445,13 +445,37 @@ class CLMS_Frontend {
 								<div class="clms-hcc-includes">
 									<span class="clms-includes-title"><?php esc_html_e( 'Course Highlights:', 'custom-lms' ); ?></span>
 									<ul class="clms-includes-list">
-										<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( 'Full access to all %d lessons', 'custom-lms' ), $total_lessons ) ); ?></li>
-										<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( '%d structured video topics', 'custom-lms' ), $total_topics ) ); ?></li>
-										<?php if ( $total_quizzes > 0 ) : ?>
-											<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( '%d assessment quiz with auto-evaluation', 'custom-lms' ), $total_quizzes ) ); ?></li>
+										<?php
+										$custom_highlights_raw = get_post_meta( $post->ID, '_clms_course_highlights', true );
+										$custom_lines = array();
+										if ( ! empty( $custom_highlights_raw ) ) {
+											$raw_lines = explode( "\n", str_replace( "\r", '', $custom_highlights_raw ) );
+											foreach ( $raw_lines as $r_line ) {
+												$t_line = trim( $r_line );
+												if ( '' !== $t_line ) {
+													$t_line = str_replace(
+														array( '{lessons}', '{topics}', '{quizzes}' ),
+														array( $total_lessons, $total_topics, $total_quizzes ),
+														$t_line
+													);
+													$custom_lines[] = $t_line;
+												}
+											}
+										}
+										?>
+										<?php if ( ! empty( $custom_lines ) ) : ?>
+											<?php foreach ( $custom_lines as $highlight_item ) : ?>
+												<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( $highlight_item ); ?></li>
+											<?php endforeach; ?>
+										<?php else : ?>
+											<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( 'Full access to all %d lessons', 'custom-lms' ), $total_lessons ) ); ?></li>
+											<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( '%d structured video topics', 'custom-lms' ), $total_topics ) ); ?></li>
+											<?php if ( $total_quizzes > 0 ) : ?>
+												<li><span class="clms-inc-icon">✓</span> <?php echo esc_html( sprintf( __( '%d assessment quiz with auto-evaluation', 'custom-lms' ), $total_quizzes ) ); ?></li>
+											<?php endif; ?>
+											<li><span class="clms-inc-icon">✓</span> <?php esc_html_e( 'Automated score report emailed to student', 'custom-lms' ); ?></li>
+											<li><span class="clms-inc-icon">✓</span> <?php esc_html_e( '100% responsive on desktop, tablet, and mobile', 'custom-lms' ); ?></li>
 										<?php endif; ?>
-										<li><span class="clms-inc-icon">✓</span> <?php esc_html_e( 'Automated score report emailed to student', 'custom-lms' ); ?></li>
-										<li><span class="clms-inc-icon">✓</span> <?php esc_html_e( '100% responsive on desktop, tablet, and mobile', 'custom-lms' ); ?></li>
 									</ul>
 								</div>
 							</div>

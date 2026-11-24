@@ -118,6 +118,7 @@ class CLMS_Meta_Boxes {
 		$price         = get_post_meta( $post->ID, '_clms_price', true );
 		$wc_product_id = get_post_meta( $post->ID, '_clms_wc_product_id', true );
 		$instructor_id = get_post_meta( $post->ID, '_clms_instructor_id', true );
+		$highlights    = get_post_meta( $post->ID, '_clms_course_highlights', true );
 
 		if ( empty( $instructor_id ) ) {
 			$instructor_id = $post->post_author;
@@ -181,6 +182,14 @@ class CLMS_Meta_Boxes {
 						</option>
 					<?php endforeach; ?>
 				</select>
+			</div>
+
+			<div class="clms-form-group">
+				<label for="clms_course_highlights" class="clms-form-label"><?php esc_html_e( 'Course Highlights (Sidebar Card)', 'custom-lms' ); ?></label>
+				<textarea name="clms_course_highlights" id="clms_course_highlights" rows="5" class="clms-textarea" style="width:100%;font-size:13px;padding:8px 10px;border-radius:6px;border:1px solid #cbd5e1;box-sizing:border-box;" placeholder="<?php esc_attr_e( "Full access to all {lessons} lessons&#10;{topics} structured video topics&#10;{quizzes} assessment quiz with auto-evaluation&#10;Automated score report emailed to student&#10;100% responsive on desktop, tablet, and mobile", 'custom-lms' ); ?>"><?php echo esc_textarea( $highlights ); ?></textarea>
+				<div class="clms-form-help">
+					<?php esc_html_e( 'Enter one highlight per line. Leave empty to automatically use default course statistics. Tags supported: {lessons}, {topics}, {quizzes}.', 'custom-lms' ); ?>
+				</div>
 			</div>
 		</div>
 		<script>
@@ -722,6 +731,10 @@ class CLMS_Meta_Boxes {
 			}
 			if ( isset( $_POST['clms_instructor_id'] ) ) {
 				update_post_meta( $post_id, '_clms_instructor_id', absint( wp_unslash( $_POST['clms_instructor_id'] ) ) );
+			}
+			if ( isset( $_POST['clms_course_highlights'] ) ) {
+				$highlights = sanitize_textarea_field( wp_unslash( $_POST['clms_course_highlights'] ) );
+				update_post_meta( $post_id, '_clms_course_highlights', $highlights );
 			}
 		}
 
