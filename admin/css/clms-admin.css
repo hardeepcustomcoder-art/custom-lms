@@ -1,0 +1,110 @@
+/* Custom LMS Admin Meta Box and Dropdown Styling */
+
+.clms-metabox-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px 0;
+}
+
+.clms-metabox-wrapper * {
+    box-sizing: border-box;
+}
+
+/* Vertical layout instead of horizontal form-table */
+.clms-form-group {
+    margin-bottom: 16px;
+}
+
+.clms-form-group:last-child {
+    margin-bottom: 4px;
+}
+
+.clms-form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+/* Beautiful modern dropdowns and inputs */
+.clms-input,
+.clms-select {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 7px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    color: #1e293b !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+    outline: none !important;
+    height: auto !important;
+}
+
+.clms-select {
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 10px center !important;
+    background-size: 14px 14px !important;
+    padding-right: 32px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+}
+
+.clms-input:focus,
+.clms-select:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+.clms-input-small {
+    max-width: 120px !important;
+}
+
+.clms-form-help {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* Fix sidebar horizontal scrolling in Gutenberg & Classic Editor */
+.edit-post-layout__sidebar,
+.interface-interface-skeleton__sidebar,
+.postbox-container,
+#side-sortables,
+.postbox,
+.postbox .inside {
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Badges */
+.clms-meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.clms-meta-badge-free {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.clms-meta-badge-locked {
+    background-color: #f1f5f9;
+    color: #475569;
+}
