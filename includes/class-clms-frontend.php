@@ -446,7 +446,7 @@ class CLMS_Frontend {
 									<span class="clms-includes-title"><?php esc_html_e( 'Course Highlights:', 'custom-lms' ); ?></span>
 									<ul class="clms-includes-list">
 										<?php
-										$custom_highlights_raw = get_post_meta( $post->ID, '_clms_course_highlights', true );
+										$custom_highlights_raw = ( $course && isset( $course->ID ) ) ? get_post_meta( $course->ID, '_clms_course_highlights', true ) : '';
 										$custom_lines = array();
 										if ( ! empty( $custom_highlights_raw ) ) {
 											$raw_lines = explode( "\n", str_replace( "\r", '', $custom_highlights_raw ) );
